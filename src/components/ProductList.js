@@ -1,28 +1,35 @@
 import React from "react";
 
 export const ProductList = (props) => {
-  // TODO: display appropriate header
-  // TODO: display only chosen columns
-  // TODO: display products as new table rows
+  // TODO: change index iteration for an specific ID
   return (
     <div id="product-list">
       <header>
-        <strong>Product List (0 items)</strong>
+        <strong>Product List ({props.products[0].length} items)</strong>
       </header>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Price</th>
+            {Object.keys(props.columns).map((column, idx) => (
+              <React.Fragment key={idx}>
+                {!!props.columns[`${column}`] && (
+                  <th key={idx}>
+                    {column.charAt(0).toUpperCase() +
+                      column.substring(1, column.length)}
+                  </th>
+                )}
+              </React.Fragment>
+            ))}
           </tr>
           {props.products[0].map((product) => (
             <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
-              <td>{product.department}</td>
-              <td>{product.price}</td>
+              {Object.keys(props.columns).map((column, idx) => (
+                <React.Fragment key={idx}>
+                  {!!props.columns[`${column}`] && (
+                    <td key={product.id}>{product[`${column}`]}</td>
+                  )}
+                </React.Fragment>
+              ))}
             </tr>
           ))}
         </thead>

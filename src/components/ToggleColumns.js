@@ -16,6 +16,7 @@ export const ToggleColumns = (props) => {
               id={column}
               name={column}
               type="checkbox"
+              checked={props.columns[`${column}`]}
               onChange={onCheckboxClick}
             />
           </div>

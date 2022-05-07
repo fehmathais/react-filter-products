@@ -14,7 +14,7 @@ export const Search = (props) => {
     name: true,
     department: true,
     price: true,
-    currency: true,
+    currency: false,
   });
 
   const onPriceInputChange = (name, value) => {
