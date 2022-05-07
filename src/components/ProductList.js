@@ -5,7 +5,7 @@ export const ProductList = (props) => {
   return (
     <div id="product-list">
       <header>
-        <strong>Product List ({props.products[0].length} items)</strong>
+        <strong>Product List ({props.products.length} items)</strong>
       </header>
       <table>
         <thead>
@@ -21,17 +21,18 @@ export const ProductList = (props) => {
               </React.Fragment>
             ))}
           </tr>
-          {props.products[0].map((product) => (
-            <tr key={product.id}>
-              {Object.keys(props.columns).map((column, idx) => (
-                <React.Fragment key={idx}>
-                  {!!props.columns[`${column}`] && (
-                    <td key={product.id}>{product[`${column}`]}</td>
-                  )}
-                </React.Fragment>
-              ))}
-            </tr>
-          ))}
+          {props.products.length > 0 &&
+            props.products.map((product) => (
+              <tr key={product.id}>
+                {Object.keys(props.columns).map((column, idx) => (
+                  <React.Fragment key={idx}>
+                    {!!props.columns[`${column}`] && (
+                      <td key={product.id}>{product[`${column}`]}</td>
+                    )}
+                  </React.Fragment>
+                ))}
+              </tr>
+            ))}
         </thead>
         <tbody></tbody>
       </table>

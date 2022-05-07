@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "../styles/Search.css";
 import { ToggleColumns } from "./ToggleColumns";
@@ -6,8 +6,8 @@ import { ProductList } from "./ProductList";
 import { FilterForm } from "./FilterForm";
 
 export const Search = (props) => {
-  let displayedProducts = [props.products];
   const [price, setPrice] = useState({ priceFrom: "", priceTo: "" });
+  const [products, setProducts] = useState(props.products || []);
 
   const [columns, setColumns] = useState({
     id: true,
@@ -25,9 +25,16 @@ export const Search = (props) => {
     setColumns({ ...columns, [name]: checked });
   };
 
-  const filterProducts = () => {
-    // TODO: implement handler for filtering products by price range
-  };
+  useEffect(() => {
+    //TODO: do a debounce here to optimize the search
+    setProducts(
+      props.products.filter((product) => {
+        return !!price.priceTo
+          ? product.price > price.priceFrom && product.price < price.priceTo
+          : product.price > price.priceFrom;
+      })
+    );
+  }, [price, props]);
 
   return (
     <div className="Products">
@@ -39,7 +46,7 @@ export const Search = (props) => {
 
       <ToggleColumns onCheckboxClick={onCheckboxClick} columns={columns} />
 
-      <ProductList products={displayedProducts} columns={columns} />
+      <ProductList products={products} columns={columns} />
     </div>
   );
 };
