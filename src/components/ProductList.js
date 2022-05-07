@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export const ProductList = (props) => {
   // TODO: display appropriate header
@@ -17,10 +17,17 @@ export const ProductList = (props) => {
             <th>Department</th>
             <th>Price</th>
           </tr>
+          {props.products[0].map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>{product.department}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
         </thead>
-        <tbody>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
-  )
-}
+  );
+};
