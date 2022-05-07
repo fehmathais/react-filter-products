@@ -18,7 +18,7 @@ export const Search = (props) => {
   });
 
   const onPriceInputChange = (name, value) => {
-    // TODO: implement price change handler
+    setPrice({ ...price, [name]: value });
   };
 
   const onCheckboxClick = (name, checked) => {
@@ -31,7 +31,11 @@ export const Search = (props) => {
 
   return (
     <div className="Products">
-      <FilterForm priceFrom={""} priceTo={""} onPriceInputChange={""} />
+      <FilterForm
+        priceFrom={price.priceFrom}
+        priceTo={price.priceTo}
+        onPriceInputChange={onPriceInputChange}
+      />
 
       <ToggleColumns onCheckboxClick={onCheckboxClick} columns={columns} />
 
