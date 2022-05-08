@@ -14,7 +14,7 @@ export const Search = (props) => {
     name: true,
     department: true,
     price: true,
-    currency: false,
+    currency: true,
   });
 
   const onPriceInputChange = (name, value) => {
@@ -28,11 +28,14 @@ export const Search = (props) => {
   useEffect(() => {
     //TODO: do a debounce here to optimize the search
     setProducts(
-      props.products.filter((product) => {
-        return !!price.priceTo
-          ? product.price >= price.priceFrom && product.price <= price.priceTo
-          : product.price >= price.priceFrom;
-      })
+      price.priceFrom !== 0 && price.priceTo !== 0
+        ? props.products.filter((product) => {
+            return !!price.priceTo
+              ? product.price >= price.priceFrom &&
+                  product.price <= price.priceTo
+              : product.price >= price.priceFrom;
+          })
+        : []
     );
   }, [price, props]);
 

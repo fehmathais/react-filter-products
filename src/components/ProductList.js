@@ -21,6 +21,8 @@ export const ProductList = (props) => {
               </React.Fragment>
             ))}
           </tr>
+        </thead>
+        <tbody>
           {props.products.length > 0 &&
             props.products.map((product) => (
               <tr key={product.id}>
@@ -33,8 +35,7 @@ export const ProductList = (props) => {
                 ))}
               </tr>
             ))}
-        </thead>
-        <tbody></tbody>
+        </tbody>
       </table>
     </div>
   );
