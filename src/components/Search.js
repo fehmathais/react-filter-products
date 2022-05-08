@@ -30,8 +30,8 @@ export const Search = (props) => {
     setProducts(
       props.products.filter((product) => {
         return !!price.priceTo
-          ? product.price > price.priceFrom && product.price < price.priceTo
-          : product.price > price.priceFrom;
+          ? product.price >= price.priceFrom && product.price <= price.priceTo
+          : product.price >= price.priceFrom;
       })
     );
   }, [price, props]);
