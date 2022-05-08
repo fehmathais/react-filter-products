@@ -2,7 +2,7 @@ import React from "react";
 
 export const FilterForm = (props) => {
   const onPriceInputChange = (e) => {
-    props.onPriceInputChange(e.target.name, e.target.value);
+    props.onPriceInputChange(e.target.name, parseInt(e.target.value));
   };
 
   return (
